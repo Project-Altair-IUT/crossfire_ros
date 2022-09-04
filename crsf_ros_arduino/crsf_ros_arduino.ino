@@ -19,8 +19,8 @@ PPMReader ppm(interruptPin, channelAmount);
 
 void setup() {
     Serial.begin(115200);
-//    nh.initNode();
-//    nh.advertise(rc_signal);
+    nh.initNode();
+    nh.advertise(rc_signal);
 }
 
 void loop() {
@@ -28,13 +28,13 @@ void loop() {
     // Print latest valid values from all channels
     for (byte channel = 1; channel <= channelAmount; ++channel) {
         ch[channel - 1] = ppm.latestValidChannelValue(channel, 0);
-        Serial.print(ch[channel - 1]);
-        if(channel < channelAmount) Serial.print('\t');
+//        Serial.print(ch[channel - 1]);
+//        if(channel < channelAmount) Serial.print('\t');
     }
-    Serial.println();
-//    int_msg.data = ch;
-//    int_msg.data_length = 9;
-//    rc_signal.publish(&int_msg);
-//    nh.spinOnce();
+//    Serial.println();
+    int_msg.data = ch;
+    int_msg.data_length = 8;
+    rc_signal.publish(&int_msg);
+    nh.spinOnce();
     delay(20);
 }
