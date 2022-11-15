@@ -12,7 +12,7 @@ std_msgs::Int16MultiArray int_msg;
 ros::Publisher rc_signal("rc_signal", &int_msg);
 
 int16_t ch[8];
-// Initialize a PPMReader on digital pin 3 with 6 expected channels.
+// Initialize a PPMReader on digital pin 2 with 8 expected channels.
 byte interruptPin = 2;
 byte channelAmount = 8;
 PPMReader ppm(interruptPin, channelAmount);
